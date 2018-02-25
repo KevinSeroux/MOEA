@@ -5,9 +5,10 @@ classdef config < handle
         probMutation % Mutants count = Mating pool size * probMutation
         display
         
+        % Mandatory to be filled by user
+        variables
+        
         % Mandatory to be defined by user
-        varMin
-        varMax
         objectives
     end
     
@@ -17,6 +18,7 @@ classdef config < handle
             obj.probCrossover = 0.5;
             obj.probMutation = 0.2;
             obj.display = {display.graph(), display.text()};
+            obj.variables = table([], [], 'VariableNames',{'min' 'max'});
         end
     end
 end

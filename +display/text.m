@@ -9,9 +9,16 @@ classdef text < display.base
 
             for i=1:length(population)
                 indiv = population(i);
-                objectiveValues = indiv.objectiveValues;
+                sentance = '';
 
-                sentance = strcat(num2str(indiv.variable), ' =>');
+                variables = indiv.variables;
+                for j=1:length(variables)
+                    sentance = strcat([sentance, ' ', num2str(variables(j)), ',']);
+                end
+                
+                sentance = strcat(sentance, ' =>');
+                
+                objectiveValues = indiv.objectiveValues;
                 for j=1:length(objectiveValues)
                     sentance = strcat([sentance, ' ', num2str(objectiveValues(j)), ',']);
                 end

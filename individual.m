@@ -1,6 +1,6 @@
 classdef individual  
     properties
-        variable % TODO: Several variables
+        variables
         objectiveValues
         
         rank
