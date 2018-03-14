@@ -1,4 +1,4 @@
-function population = geneticAlgorithm(config)
+function firstFront = geneticAlgorithm(config)
     display = config.display;
     objectives = config.objectives;
     popSize = config.popSize;
@@ -6,13 +6,14 @@ function population = geneticAlgorithm(config)
     parents = [];
     children = generatePopulation(config); % First generation
     
-    while 1
+    for gen=1:config.maxGen
         children = evaluate(children, objectives);
         population = [parents, children];
         fronts = fastNonDeterminatedSort(population);
+        firstFront = fronts{1};
         
         % User feedback
-        for i=1:length(display); display{i}.print(fronts{1}); end
+        for i=1:length(display); display{i}.print(firstFront); end
         
         parents = [];
         i = 1;
@@ -35,6 +36,9 @@ function population = geneticAlgorithm(config)
         
         children = makeNewPopulation(parents, config);
     end
+    
+    % User feedback
+    for i=1:length(display); display{i}.finalPrint(firstFront); end
 end
 
 function population = generatePopulation(config)
@@ -49,20 +53,6 @@ function population = generatePopulation(config)
         for j=1:countVariables
             population(i).variables(j) = utils.randBetween( ...
                 variables{j, 'min'}, variables{j, 'max'});
-        end
-    end
-end
-
-function population = evaluate(population, objectives)
-    popSize = length(population);
-    countObjectives = length(objectives);
-    
-    for i=1:popSize
-        population(i).objectiveValues = inf(1, countObjectives);
-        
-        for j=1:countObjectives
-            population(i).objectiveValues(j) = ...
-                objectives{j}.get(population(i).variables);
         end
     end
 end
@@ -139,7 +129,7 @@ function children = mutation(children, config)
     variables = config.variables;
     countVariables = height(variables);
     countChildren = length(children);
-    countMutations = countChildren * config.probMutation;
+    countMutations = round(countChildren * config.probMutation);
     mutantChildrenIdx = randperm(countChildren, countMutations);
     
     for i=1:countMutations        

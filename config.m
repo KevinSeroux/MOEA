@@ -1,5 +1,7 @@
 classdef config < handle  
     properties
+        % Optional
+        maxGen
         popSize
         probCrossover % Mating pool size = popSize * probCrossover
         probMutation % Mutants count = Mating pool size * probMutation
@@ -7,18 +9,17 @@ classdef config < handle
         
         % Mandatory to be filled by user
         variables
-        
-        % Mandatory to be defined by user
         objectives
     end
     
     methods
         function obj = config()
-            obj.popSize = 100;
-            obj.probCrossover = 0.5;
-            obj.probMutation = 0.2;
-            obj.display = {display.graph(), display.text()};
-            obj.variables = table([], [], 'VariableNames',{'min' 'max'});
+            obj.maxGen = 10;
+            obj.popSize = 250;
+            obj.probCrossover = 0.9;
+            obj.probMutation = 0.1;
+            obj.display = {display.gen()};
+            obj.variables = table([], [], 'VariableNames', {'min' 'max'});
         end
     end
 end

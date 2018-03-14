@@ -1,6 +1,6 @@
-classdef FON1 < objective.base
+classdef FON_1 < objective.base
     methods
-        function obj = FON1(args)
+        function obj = FON_1(args)
             % Invoke superclass constructor
             obj = obj@objective.base(args);
         end

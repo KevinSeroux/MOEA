@@ -27,6 +27,9 @@ classdef graph < display.base
             obj.draw();
         end
         
+        function finalPrint(~, ~)
+        end
+        
         function draw(obj)            
             title('Measurements')
             xlabel('Generation')
