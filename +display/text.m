@@ -3,15 +3,13 @@ classdef text < display.base
         bestIndiv
     end
     
-    methods        
+    methods
+        % Executed after each iteration
         function print(~, ~)
         end
         
-        function finalPrint(obj, pop)
-            obj.printPop(pop)
-        end
-        
-        function printPop(~, pop)
+        % Executed after final iteration
+        function finalPrint(~, pop)
             for i=1:length(pop)
                 fprintf(pop(i).toString());
             end

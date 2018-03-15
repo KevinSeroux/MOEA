@@ -9,13 +9,16 @@ classdef graph < display.base
             obj.countObjectives = nan;
         end
         
+        % Executed after each iteration
         function print(obj, population)
+            % Initialization is possible only at first iteration
             if isnan(obj.countObjectives)
                 obj.countObjectives = length(population(1).objectiveValues);
                 obj.means = nan(obj.countObjectives, 0);
                 figure
             end
             
+            % Append means
             curMeans = nan(obj.countObjectives, 1);
             for i=1:obj.countObjectives
                 curMeans(i) = mean( ...
@@ -27,9 +30,11 @@ classdef graph < display.base
             obj.draw();
         end
         
+        % Executed after final iteration
         function finalPrint(~, ~)
         end
         
+        % Update the graph
         function draw(obj)            
             title('Measurements')
             xlabel('Generation')

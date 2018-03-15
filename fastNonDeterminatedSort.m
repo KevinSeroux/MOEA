@@ -22,7 +22,7 @@ function fronts = fastNonDeterminatedSort(population)
         % Fill first front
         if countDominantSolutions(indiv1Idx) == 0
             population(indiv1Idx).rank = 1;
-            fronts{1} = [fronts{1}, indiv1Idx]; % TODO: Not sure
+            fronts{1} = [fronts{1}, indiv1Idx];
         end
     end
         

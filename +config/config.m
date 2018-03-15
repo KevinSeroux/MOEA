@@ -14,7 +14,7 @@ classdef config < handle
     
     methods
         function obj = config()
-            obj.maxGen = 10;
+            obj.maxGen = 1;
             obj.popSize = 250;
             obj.probCrossover = 0.9;
             obj.probMutation = 0.1;

@@ -8,11 +8,13 @@ classdef gen < display.base
             obj.curGen = 0;
         end
         
+        % Executed after each iteration
         function print(obj, ~)
             obj.curGen = obj.curGen + 1;
             fprintf('%d ', obj.curGen);
         end
         
+        % Executed after final iteration
         function finalPrint(~, ~)
         end
     end

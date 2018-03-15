@@ -29,7 +29,8 @@ classdef metric
             convergence = convergence / popSize;
         end
         
-        function diversity = computeDiversity(obj, pop)            
+        function diversity = computeDiversity(obj, pop)  
+            % Sort to get the correct df and dl
             sortedParetoFront = obj.sortPopulation(obj.paretoFront);
             sortedPop = obj.sortPopulation(pop);
             
@@ -37,6 +38,7 @@ classdef metric
             dl = utils.distance(sortedPop(end), sortedParetoFront(end));
             
             countDist = length(sortedPop) - 1;
+            % Store all the distances
             d = nan(1, countDist);
             for i=1:countDist
                 d(i) = utils.distance(sortedPop(i), sortedPop(i+1));
